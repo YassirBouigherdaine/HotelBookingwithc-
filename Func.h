@@ -86,7 +86,7 @@ void hotel::book_a_room()
 	int room_status;
 	int new_room_no;
 	std::ifstream readFromFile;
-    readFromFile.open("guestRecord.txt", std::ios::in | std::ios::binary);
+        readFromFile.open("guestRecord.txt", std::ios::in | std::ios::binary);
 	std::ofstream writeToFile;
 	writeToFile.open("guestRecord.txt", std::ios::app | std::ios::binary);
 	std::cout << "\n\t\t Enter room number to check availibalaty : ";
@@ -262,8 +262,7 @@ void hotel::delete_record(int room_no)
 	{	
 		if (room_no!=roomNo)
 		{
-			newFile.write((char*)this, sizeof(hotel));
-			
+			newFile.write((char*)this, sizeof(hotel));	
 		}
 	}
 	readFromFile.close();
@@ -272,7 +271,7 @@ void hotel::delete_record(int room_no)
 	rename("tempFile.txt","guestRecord.txt");
 }
 
-//getiing the bill
+//check the bill
 void hotel::view_bill()
 {
 	int room_no;
@@ -330,29 +329,29 @@ void hotel::calculTheBill(int room_no)
 		nights -= 1;
   	 }
 	 //months with 31 days
-     if ( mon1 == 3 && mon2 == 4 || mon1 == 5 && mon2 == 6 || mon1 == 8 && mon2 == 9 || mon1 == 10 && mon2 == 11 || mon1 == 12 && mon2 == 1  )
-		 
+     if ( mon1 == 3 && mon2 == 4 || mon1 == 5 && mon2 == 6 || mon1 == 8 && mon2 == 9 || mon1 == 10 && mon2 == 11 || mon1 == 12 && mon2 == 1  )	 
      {
-	    nights += 1;
-	 }
+	  nights += 1;
+     }
      else if (mon1 == 1 && mon2 == 2)
-	 {
-	    nights += 2;
-	 }
+     {
+	  nights += 2;
+     }
+	
      // leap year
-	 if ( mon1 == 2 && mon2==3 )
-	 {	
-		if (year1 % 400 == 0 && year1 % 100 == 0 && year1 % 4 == 0)
-		{
-			 //it's a leap year
-			nights -= 1;
-     	}
-		else
-		{
-			nights -= 2;
-		}
-			   
+     if ( mon1 == 2 && mon2==3 )
+     {	
+	 if (year1 % 400 == 0 && year1 % 100 == 0 && year1 % 4 == 0)
+	 {
+	    //it's a leap year
+	    nights -= 1;
+     	 }
+	else
+	 {
+	    nights -= 2;
 	 }
+			   
+     }
 		 
 	int sum1,sum2,sum3;
 	int room_charge; 
@@ -389,7 +388,7 @@ void hotel::calculTheBill(int room_no)
 	std::cout << "\n --------\n";
 	std::cout << "\n                                                   Date: " << day2 << "/" << mon2 << "/" << year2;
 	std::cout << "\n                                                   Room number: " << roomNo;
-    std::cout << "\n                                                   Room type: " << roomType;
+        std::cout << "\n                                                   Room type: " << roomType;
 	std::cout << "\n                                                   Name: " << Name;
 	std::cout << "\n--------------------------------------------------------------------------------\n";
 	std::cout << "\n-----------------------------------Bill no: ------------------------------------\n";
