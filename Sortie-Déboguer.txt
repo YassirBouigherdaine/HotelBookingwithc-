@@ -1,0 +1,24 @@
+﻿'Booking.exe' (Win32) : Chargé 'C:\Users\asus\Documents\c++ projects\projet2\Booking\Debug\Booking.exe'. Les symboles ont été chargés.
+'Booking.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\ntdll.dll'. 
+'Booking.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\kernel32.dll'. 
+'Booking.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\KernelBase.dll'. 
+'Booking.exe' (Win32) : Chargé 'C:\Program Files\AVAST Software\Avast\x86\aswhook.dll'. 
+'Booking.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\msvcp140d.dll'. 
+'Booking.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\vcruntime140d.dll'. 
+'Booking.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\ucrtbased.dll'. 
+'Booking.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\api-ms-win-core-localization-l1-2-0.dll'. 
+'Booking.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\api-ms-win-core-processthreads-l1-1-1.dll'. 
+'Booking.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\api-ms-win-core-file-l1-2-0.dll'. 
+'Booking.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\api-ms-win-core-timezone-l1-1-0.dll'. 
+'Booking.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\api-ms-win-core-file-l2-1-0.dll'. 
+'Booking.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\api-ms-win-core-synch-l1-2-0.dll'. 
+Le thread 0x15d8 s'est arrêté avec le code 0 (0x0).
+'Booking.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\apphelp.dll'. 
+'Booking.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\cmd.exe'. 
+'Booking.exe' (Win32) : Déchargé 'C:\Windows\SysWOW64\cmd.exe'
+'Booking.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\cmd.exe'. 
+'Booking.exe' (Win32) : Déchargé 'C:\Windows\SysWOW64\cmd.exe'
+'Booking.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\cmd.exe'. 
+'Booking.exe' (Win32) : Déchargé 'C:\Windows\SysWOW64\cmd.exe'
+Le thread 0x16c4 s'est arrêté avec le code -1073741749 (0xc000004b).
+Le programme '[2532] Booking.exe' s'est arrêté avec le code -1073741510 (0xc000013a).

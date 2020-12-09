@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\asus\Documents\c++ projects\projet2\Booking\Booking\</FILEPATH>
+      <FILENAME>Func.h</FILENAME>
+      <LINE>226</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>6031</DEFECTCODE>
+    <DESCRIPTION>Valeur de retour ignorée : 'rename'.</DESCRIPTION>
+    <FUNCTION>hotel::edit_guest_record</FUNCTION>
+    <DECORATED>?edit_guest_record@hotel@@QAEXXZ</DECORATED>
+    <FUNCLINE>197</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\asus\Documents\c++ projects\projet2\Booking\Booking\</FILEPATH>
+      <FILENAME>Func.h</FILENAME>
+      <LINE>268</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>6031</DEFECTCODE>
+    <DESCRIPTION>Valeur de retour ignorée : 'rename'.</DESCRIPTION>
+    <FUNCTION>hotel::edit_guest_record</FUNCTION>
+    <DECORATED>?edit_guest_record@hotel@@QAEXXZ</DECORATED>
+    <FUNCLINE>197</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\asus\Documents\c++ projects\projet2\Booking\Booking\</FILEPATH>
+      <FILENAME>ClassHotel.h</FILENAME>
+      <LINE>21</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>La variable 'hotel::roomNo' n'est pas initialisée. Initialisez toujours une variable membre (type.6).</DESCRIPTION>
+    <FUNCTION>hotel::{ctor}</FUNCTION>
+    <DECORATED>??0hotel@@QAE@XZ</DECORATED>
+    <FUNCLINE>21</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>hotel::roomNo</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\asus\Documents\c++ projects\projet2\Booking\Booking\</FILEPATH>
+      <FILENAME>ClassHotel.h</FILENAME>
+      <LINE>21</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>La variable 'hotel::phoneNo' n'est pas initialisée. Initialisez toujours une variable membre (type.6).</DESCRIPTION>
+    <FUNCTION>hotel::{ctor}</FUNCTION>
+    <DECORATED>??0hotel@@QAE@XZ</DECORATED>
+    <FUNCLINE>21</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>hotel::phoneNo</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\asus\Documents\c++ projects\projet2\Booking\Booking\</FILEPATH>
+      <FILENAME>ClassHotel.h</FILENAME>
+      <LINE>21</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>La variable 'hotel::creditCardNo' n'est pas initialisée. Initialisez toujours une variable membre (type.6).</DESCRIPTION>
+    <FUNCTION>hotel::{ctor}</FUNCTION>
+    <DECORATED>??0hotel@@QAE@XZ</DECORATED>
+    <FUNCLINE>21</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>hotel::creditCardNo</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>
