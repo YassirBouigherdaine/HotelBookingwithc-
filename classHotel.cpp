@@ -4,7 +4,25 @@
 
 
 
-// Home function 
+Hotel::Hotel()
+{
+	roomNo = 0;
+
+	Name = "Unkown";
+
+	roomType = "Unkown";
+
+	arrangement_type = "Unkown";
+
+	day1 = 00, mon1 = 00, year1 = 00;           
+
+	day2 = 00, mon2 = 00, year2 = 00;          
+
+	phoneNo = 00;
+
+	creditCardNo = 00;
+}
+
 
 void Hotel::home_func()
 {
@@ -61,27 +79,6 @@ void Hotel::home_func()
 
 }
 
-
-
-Hotel::Hotel()
-{
-	roomNo = 0;
-
-	Name = "Unkown";
-
-	roomType = "Unkown";
-
-	arrangement_type = "Unkown";
-
-	day1 = 00, mon1 = 00, year1 = 00;           
-
-	day2 = 00, mon2 = 00, year2 = 00;          
-
-	phoneNo = 00;
-
-	creditCardNo = 00;
-}
-
 void Hotel::main_menu()
 {
 	int choice;
@@ -100,7 +97,7 @@ void Hotel::main_menu()
 		std::cout << "\t\t\t -Press [4] to check bill\n";
 
 		std::cout << "\n\t\t\t *Please enter your choice: ";
-        std::cin >> choice;
+                std::cin >> choice;
 
 		switch (choice)
 		{
@@ -172,12 +169,8 @@ void Hotel::book_a_room()
 	int room_status, new_room_no;
 
 	std::ifstream readFromFile;
-<<<<<<< HEAD:classHotel.cpp
 	readFromFile.open("guestRecord.txt", std::ios::in | std::ios::binary);
-
-=======
-        readFromFile.open("guestRecord.txt", std::ios::in | std::ios::binary);
->>>>>>> 2de48919b1ce35578c8500f30fe16fc2ff1a24eb:Func.h
+	
 	std::ofstream writeToFile;
 	writeToFile.open("guestRecord.txt", std::ios::app | std::ios::binary);
 
@@ -322,7 +315,6 @@ int Hotel::check_room_status(int new_room_no)
 	return room_status;
 }
 
-
 void Hotel::add_guest_record(int new_room_no)
 {
 	std::ofstream writeToFile;
@@ -373,12 +365,7 @@ void Hotel::delete_record(int room_no)
 	{
 		if (room_no != roomNo)
 		{
-<<<<<<< HEAD:classHotel.cpp
-			newFile.write((char*)this, sizeof(Hotel));
-
-=======
 			newFile.write((char*)this, sizeof(hotel));	
->>>>>>> 2de48919b1ce35578c8500f30fe16fc2ff1a24eb:Func.h
 		}
 	}
 
@@ -389,13 +376,8 @@ void Hotel::delete_record(int room_no)
 	rename("tempFile.txt", "guestRecord.txt");
 }
 
-<<<<<<< HEAD:classHotel.cpp
 
 void Hotel::view_bill()
-=======
-//check the bill
-void hotel::view_bill()
->>>>>>> 2de48919b1ce35578c8500f30fe16fc2ff1a24eb:Func.h
 {
 	int room_no;
 	int room_status;
@@ -461,12 +443,10 @@ void Hotel::calculTheBill(int room_no)
 	if (mon1 == 4 && mon2 == 5 || mon1 == 6 && mon2 == 7 || mon1 == 9 && mon2 == 10 || mon1 == 11 && mon2 == 12)
 	{
 		nights -= 1;
-<<<<<<< HEAD:classHotel.cpp
 	}
 
 	//months with 31 days
 	if (mon1 == 3 && mon2 == 4 || mon1 == 5 && mon2 == 6 || mon1 == 8 && mon2 == 9 || mon1 == 10 && mon2 == 11 || mon1 == 12 && mon2 == 1)
-
 	{
 		nights += 1;
 	}
@@ -494,37 +474,7 @@ void Hotel::calculTheBill(int room_no)
 
 	int sum1 = 0, sum2 = 0, sum3 = 0;
 	int room_charge = 0;
-=======
-  	 }
-	 //months with 31 days
-     if ( mon1 == 3 && mon2 == 4 || mon1 == 5 && mon2 == 6 || mon1 == 8 && mon2 == 9 || mon1 == 10 && mon2 == 11 || mon1 == 12 && mon2 == 1  )	 
-     {
-	  nights += 1;
-     }
-     else if (mon1 == 1 && mon2 == 2)
-     {
-	  nights += 2;
-     }
-	
-     // leap year
-     if ( mon1 == 2 && mon2==3 )
-     {	
-	 if (year1 % 400 == 0 && year1 % 100 == 0 && year1 % 4 == 0)
-	 {
-	    //it's a leap year
-	    nights -= 1;
-     	 }
-	else
-	 {
-	    nights -= 2;
-	 }
-			   
-     }
-		 
-	int sum1,sum2,sum3;
-	int room_charge; 
->>>>>>> 2de48919b1ce35578c8500f30fe16fc2ff1a24eb:Func.h
-	int total;
+
 
 	if (roomType == "single")
 	{
@@ -555,18 +505,15 @@ void Hotel::calculTheBill(int room_no)
 		sum3 = 0;
 	}
 
-	total = sum1 + sum2 + sum3;
+	int total = sum1 + sum2 + sum3;
 
 	std::cout << "\n --------\n";
 	std::cout << "| Hotelo |";
 	std::cout << "\n --------\n";
 	std::cout << "\n                                                   Date: " << day2 << "/" << mon2 << "/" << year2;
 	std::cout << "\n                                                   Room number: " << roomNo;
-<<<<<<< HEAD:classHotel.cpp
 	std::cout << "\n                                                   Room type: " << roomType;
-=======
         std::cout << "\n                                                   Room type: " << roomType;
->>>>>>> 2de48919b1ce35578c8500f30fe16fc2ff1a24eb:Func.h
 	std::cout << "\n                                                   Name: " << Name;
 	std::cout << "\n--------------------------------------------------------------------------------\n";
 	std::cout << "\n-----------------------------------Bill no: ------------------------------------\n";
