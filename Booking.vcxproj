@@ -139,10 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="hotelo.cpp" />
+    <ClCompile Include="classHotel.cpp" />
+    <ClCompile Include="homeFunc.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Func.h" />
     <ClInclude Include="ClassHotel.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
