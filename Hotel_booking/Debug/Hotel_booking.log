@@ -1,0 +1,3 @@
+﻿  ClassHotel.cpp
+C:\Users\asus\source\repos\Hotel_booking\Hotel_booking\ClassHotel.cpp(572,32): warning C4244: '=' : conversion de 'double' en 'int', perte possible de données
+  Hotel_booking.vcxproj -> C:\Users\asus\source\repos\Hotel_booking\Debug\Hotel_booking.exe
