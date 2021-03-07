@@ -26,7 +26,7 @@ class Hotel
 
 	std::string arrangement_type;     // bad & breakfats(BB) or bad only (BO)
 
-	int day1, mon1, year1;           // check -in or arrival Date
+	int day1, mon1, year1;           // check-in or arrival Date
 
 	int day2, mon2, year2;           // check-out or daparture Date
 
@@ -63,8 +63,6 @@ public:
 	void modify_guest_record(int);        // editing a guest record
 
 	void delete_record(int);              //deleting a guest record
-
-	void view_bill(int);                    // billing function
 
 	void calculTheBill(int);             //calculate the bill of the guest 
 

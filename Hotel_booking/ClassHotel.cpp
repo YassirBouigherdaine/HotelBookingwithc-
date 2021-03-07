@@ -99,7 +99,7 @@ void Hotel::main_menu()
 		std::cout << "\n\n\t\t\t [1] Add new guest\n";
 		std::cout << "\t\t\t [2] Display booked rooms\n";
 		std::cout << "\t\t\t [3] Display guest record\n";
-		std::cout << "\t\t\t [4] Display departures list\n";    
+		std::cout << "\t\t\t [4] Display departures list\n";
 		std::cout << "\t\t\t [5] Display arrivals list\n";
 		std::cout << "\t\t\t [6] Exit\n";
 
@@ -213,7 +213,7 @@ void Hotel::display_reserved_rooms()
 					"Credit card no: " << creditCardNo << "\n";
 				std::cout << "---------------------------------------------------------------------------------------";
 			}
-			
+
 			readFromFile.read((char*)this, sizeof(Hotel));
 		}
 
@@ -262,7 +262,7 @@ void Hotel::display_departures_list()
 					"Credit card no: " << creditCardNo << "\n";
 				std::cout << "---------------------------------------------------------------------------------------";
 			}
-			
+
 			readFromFile.read((char*)this, sizeof(Hotel));
 		}
 
@@ -357,30 +357,31 @@ void Hotel::display_guest_record()
 
 			else
 			{
-				std::cout << "--------------------------------Guest record---------------------------------";
-				std::cout << "\n-----------------------------------------------------------------------------";
-				std::cout << "\n\n\t\t\t Room number: " << roomNo;
-				std::cout << "\n-----------------------------------------------------------------------------";
-				std::cout << "\n\t\t\t Room type: " << roomType;
-				std::cout << "\n-----------------------------------------------------------------------------";
-				std::cout << "\n\t\t\t Name: " << Name;
-				std::cout << "\n-----------------------------------------------------------------------------";
-				std::cout << "\n\t\t\t Arrangement type: " << arrangement_type;
-				std::cout << "\n-----------------------------------------------------------------------------";
-				std::cout << "\n\t\t\t Check-in: " << day1 << "/" << mon1 << "/" << year1;
-				std::cout << "\n-----------------------------------------------------------------------------";
-				std::cout << "\n\t\t\t Check-out: " << day2 << "/" << mon2 << "/" << year2;
-				std::cout << "\n-----------------------------------------------------------------------------";
-				std::cout << "\n\t\t\t Phone no: " << phoneNo;
-				std::cout << "\n-----------------------------------------------------------------------------";
-				std::cout << "\n\t\t\t Credit card no: " << creditCardNo;
-				std::cout << "\n-----------------------------------------------------------------------------";
+				std::cout << "\t--------------------------------Guest record---------------------------------";
+				std::cout << "\n\t-----------------------------------------------------------------------------";
+				std::cout << "\n\t\t\t\t Room number: " << roomNo;
+				std::cout << "\n\t-----------------------------------------------------------------------------";
+				std::cout << "\n\t\t\t\t Room type: " << roomType;
+				std::cout << "\n\t-----------------------------------------------------------------------------";
+				std::cout << "\n\t\t\t\t Name: " << Name;
+				std::cout << "\n\t-----------------------------------------------------------------------------";
+				std::cout << "\n\t\t\t\t Arrangement type: " << arrangement_type;
+				std::cout << "\n\t-----------------------------------------------------------------------------";
+				std::cout << "\n\t\t\t\t Check-in: " << day1 << "/" << mon1 << "/" << year1;
+				std::cout << "\n\t-----------------------------------------------------------------------------";
+				std::cout << "\n\t\t\t\t Check-out: " << day2 << "/" << mon2 << "/" << year2;
+				std::cout << "\n\t-----------------------------------------------------------------------------";
+				std::cout << "\n\t\t\t\t Phone no: " << phoneNo;
+				std::cout << "\n\t-----------------------------------------------------------------------------";
+				std::cout << "\n\t\t\t\t Credit card no: " << creditCardNo;
+				std::cout << "\n\t-----------------------------------------------------------------------------";
 
 				readFromFile.read((char*)this, sizeof(Hotel));
 				readFromFile.close();
 
 				//editing the record
-				std::cout << "\n\n\t [1] Add to presents \t [2] Modify the record \t [3] Delete \t [4] Bill \t [5] Exit: \n";
+
+				std::cout << "\n\n\t[1] Add to presents\t[2] Modify\t[3] Delete\t[4] Bill\t[5] Exit: \n";
 
 				int option;
 				std::cout << "\n\t\t\t Your choice: ";
@@ -559,116 +560,115 @@ void Hotel::calculTheBill(int room_no)
 {
 	system("cls");
 
-	int nights;
+	std::ifstream readFromFile("guestRecord.txt", std::ios::in | std::ios::binary);
 
-	// this function works for dates with same year
-
-	struct std::tm a = { 0,0,0,day1,mon1,120 };            //check-in date
-	struct std::tm b = { 0,0,0,day2,mon2,120 };            //check-out date
-
-	std::time_t x = std::mktime(&a);
-	std::time_t y = std::mktime(&b);
-
-	nights = (std::difftime(y, x) / 86400);                //we have 86400s in a day (60*60*24)
-
-	//months with 30 days
-	if (mon1 == 4 && mon2 == 5 || mon1 == 6 && mon2 == 7 || mon1 == 9 && mon2 == 10 || mon1 == 11 && mon2 == 12)
+	while (readFromFile.read((char*)this, sizeof(Hotel)))
 	{
-		nights -= 1;
-	}
-
-	//months with 31 days
-	if (mon1 == 3 && mon2 == 4 || mon1 == 5 && mon2 == 6 || mon1 == 8 && mon2 == 9 || mon1 == 10 && mon2 == 11 || mon1 == 12 && mon2 == 1)
-	{
-		nights += 1;
-	}
-
-	else if (mon1 == 1 && mon2 == 2)
-	{
-		nights += 2;
-	}
-
-	// leap year
-	if (mon1 == 2 && mon2 == 3)
-	{
-		if (year1 % 400 == 0 && year1 % 100 == 0 && year1 % 4 == 0)
+		if (roomNo == room_no)
 		{
-			//it's a leap year
-			nights -= 1;
-		}
+			int nights;
 
-		else
-		{
-			nights -= 2;
-		}
+			struct std::tm a = { 0,0,0,day1,mon1,120 };            //check-in date
+			struct std::tm b = { 0,0,0,day2,mon2,120 };            //check-out date
 
-	}
+			std::time_t x = std::mktime(&a);
+			std::time_t y = std::mktime(&b);
 
-	int sum1 = 0, sum2 = 0, sum3 = 0;
-	int room_charge = 0;
+			nights = (std::difftime(y, x) / 86400);                //we have 86400s in a day (60*60*24)
 
+			//months with 30 days
 
-	if (roomType == "single")
-	{
-		room_charge = SINGLE_ROOM_PRICE;
-		sum1 = nights * SINGLE_ROOM_PRICE;
-		sum2 = TAXE * nights;
-		sum3 = BREAKFAST_PRICE * nights;
-	}
+			if (mon1 == 4 && mon2 == 5 || mon1 == 6 && mon2 == 7 || mon1 == 9 && mon2 == 10 || mon1 == 11 && mon2 == 12)
+			{
+				nights -= 1;
+			}
 
-	if (roomType == "double")
-	{
-		room_charge = DOUBLE_ROOM_PRICE;
-		sum1 = nights * DOUBLE_ROOM_PRICE;
-		sum2 = TAXE * 2 * nights;
-		sum3 = BREAKFAST_PRICE * 2 * nights;
-	}
+			//months with 31 days
 
-	if (roomType == "triple")
-	{
-		room_charge = TRIPLE_ROOM_PRICE;
-		sum1 = nights * TRIPLE_ROOM_PRICE;
-		sum2 = TAXE * 3 * nights;
-		sum3 = BREAKFAST_PRICE * 3 * nights;
-	}
+			if (mon1 == 3 && mon2 == 4 || mon1 == 5 && mon2 == 6 || mon1 == 8 && mon2 == 9 || mon1 == 10 && mon2 == 11 || mon1 == 12 && mon2 == 1)
+			{
+				nights += 1;
+			}
 
-	if (arrangement_type == "BO")
-	{
-		sum3 = 0;
-	}
+			else if (mon1 == 1 && mon2 == 2)
+			{
+				nights += 2;
+			}
 
-	int total = sum1 + sum2 + sum3;
+			// leap year
 
-	std::cout << "\n --------\n";
-	std::cout << "| HOTELO |";
-	std::cout << "\n --------\n";
-	std::cout << "\n                                                   Date: " << day2 << "/" << mon2 << "/" << year2;
-	std::cout << "\n                                                   Room number: " << roomNo;
-	std::cout << "\n                                                   Room type: " << roomType;
-	std::cout << "\n                                                   Name: " << Name;
-	std::cout << "\n--------------------------------------------------------------------------------\n";
-	std::cout << "\n-----------------------------------Bill no: ------------------------------------\n";
-	std::cout << " Service:    \t\tPrice: \t\t Amount: \t\tSum:          \n";
-	std::cout << "\n--------------------------------------------------------------------------------\n";
-	std::cout << " Room charge:\t\t" << room_charge << " \t\t   " << nights << " \t\t        " << sum1 << "     \n\n";
-	std::cout << " Taxes:      \t\t" << TAXE << "                                      " << sum2 << "    \n\n";   //pax is person 
-	std::cout << " Breakfast:  \t\t" << BREAKFAST_PRICE << "                                      " << sum3 << "    \n\n";
-	std::cout << "\n--------------------------------------------------------------------------------\n";
-	std::cout << "                                            Toltal:             " << total << "      \n\n";
-	std::cout << "                                            TVA:10%             " << total * 0.1 << "\n\n";
-	std::cout << "                                            NET:                " << total + (total * 0.1) << "  \n\n";
+			if (mon1 == 2 && mon2 == 3)
+			{
+				if (year1 % 400 == 0 && year1 % 100 == 0 && year1 % 4 == 0)
+				{
+					//it's a leap year
+					nights -= 1;
+				}
 
+				else
+				{
+					nights -= 2;
+				}
 
-	std::cout << "\n\t\t\t Press [D] to delete the record\n";
+			}
 
-	if (_kbhit())
-	{
-		char c = _getch();
+			int sum1 = 0, sum2 = 0, sum3 = 0;
+			int room_charge = 0;
 
-		if (c == 'd')
-		{
-			delete_record(room_no);
+			if (roomType == "single")
+			{
+				room_charge = SINGLE_ROOM_PRICE;
+				sum1 = nights * SINGLE_ROOM_PRICE;
+				sum2 = TAXE * nights;
+				sum3 = BREAKFAST_PRICE * nights;
+			}
+
+			if (roomType == "double")
+			{
+				room_charge = DOUBLE_ROOM_PRICE;
+				sum1 = nights * DOUBLE_ROOM_PRICE;
+				sum2 = TAXE * 2 * nights;
+				sum3 = BREAKFAST_PRICE * 2 * nights;
+			}
+
+			if (roomType == "triple")
+			{
+				room_charge = TRIPLE_ROOM_PRICE;
+				sum1 = nights * TRIPLE_ROOM_PRICE;
+				sum2 = TAXE * 3 * nights;
+				sum3 = BREAKFAST_PRICE * 3 * nights;
+			}
+
+			if (arrangement_type == "BO")
+			{
+				sum3 = 0;
+			}
+
+			int total = sum1 + sum2 + sum3;
+
+			// the bill
+
+			std::cout << "\n --------\n";
+			std::cout << "| HOTELO |";
+			std::cout << "\n --------\n";
+			std::cout << "\n                                                   Date: " << day2 << "/" << mon2 << "/" << year2;
+			std::cout << "\n                                                   Room number: " << roomNo;
+			std::cout << "\n                                                   Room type: " << roomType;
+			std::cout << "\n                                                   Name: " << Name;
+			std::cout << "\n\n--------------------------------------------------------------------------------\n";
+			std::cout << "\n-----------------------------------Bill no: ------------------------------------\n";
+			std::cout << "\n Service:    \t\tPrice: \t\t Amount: \t\tSum:          \n";
+			std::cout << "\n--------------------------------------------------------------------------------\n";
+			std::cout << " Room charge:\t\t" << room_charge << " \t\t   " << nights << " \t\t        " << sum1 << "     \n\n";
+			std::cout << " Taxes:      \t\t" << TAXE << "                                      " << sum2 << "    \n\n";
+			std::cout << " Breakfast:  \t\t" << BREAKFAST_PRICE << "                                      " << sum3 << "    \n\n";
+			std::cout << "\n--------------------------------------------------------------------------------\n";
+			std::cout << "                                            Toltal:             " << total << "      \n\n";
+			std::cout << "                                            TVA:10%             " << total * 0.1 << "\n\n";
+			std::cout << "                                            NET:                " << total + (total * 0.1) << "  \n\n";
+
 		}
 	}
-	
+
+	readFromFile.close();
 }
