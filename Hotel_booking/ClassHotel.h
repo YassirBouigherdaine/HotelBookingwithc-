@@ -24,7 +24,7 @@ class Hotel
 
 	std::string roomType;
 
-	std::string arrangement_type;     // bad & breakfats(BB) or bad only (BO)
+	std::string arrang_type;     // bad & breakfats(BB) or bad only (BO)
 
 	int day1, mon1, year1;           // check-in or arrival Date
 
