@@ -30,8 +30,6 @@ class Hotel
 
 	int day2, mon2, year2;           // check-out or daparture Date
 
-	std::string is_present;
-
 	int phoneNo;
 
 	int creditCardNo;
@@ -46,7 +44,9 @@ public:
 
 	int check_room_status(int);            // check room availability 
 
-	void add_to_presents(int);
+	int is_exist(std::string);
+
+	void add_to_presents(std::string);
 
 	void display_reserved_rooms();         // display list of reserved room
 
@@ -56,15 +56,13 @@ public:
 
 	void display_guest_record();           // view specific guest record
 
-	void book_a_room();                   // to book a rooom
+	void add_guest_record();           // adding a new guest 
 
-	void add_guest_record(int);           // adding a new guest 
+	void modify_guest_record(std::string);        // editing a guest record
 
-	void modify_guest_record(int);        // editing a guest record
+	void delete_record(std::string);              //deleting a guest record
 
-	void delete_record(int);              //deleting a guest record
-
-	void calculTheBill(int);             //calculate the bill of the guest 
+	void calculTheBill(std::string);             //calculate the bill of the guest 
 
 };
 
