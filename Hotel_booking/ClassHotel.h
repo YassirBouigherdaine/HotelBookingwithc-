@@ -59,6 +59,10 @@ public:
 	void add_guest_record();           // adding a new guest 
 
 	void modify_guest_record(std::string);        // editing a guest record
+	void edit_guest_name(std::string);
+	void edit_date(std::string);
+	void edit_phone_n(std::string);
+	void edit_creditCardNo(std::string);
 
 	void delete_record(std::string);              //deleting a guest record
 
