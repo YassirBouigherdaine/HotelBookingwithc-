@@ -6,11 +6,11 @@
 #include<conio.h>
 
 
-constexpr auto SINGLE_ROOM_PRICE = 500;
-constexpr auto DOUBLE_ROOM_PRICE = 600;
-constexpr auto TRIPLE_ROOM_PRICE = 800;
-constexpr auto BREAKFAST_PRICE = 60;
-constexpr auto TAXE = 10;
+constexpr auto SINGLE_ROOM_PRICE = 50;
+constexpr auto DOUBLE_ROOM_PRICE = 60;
+constexpr auto TRIPLE_ROOM_PRICE = 80;
+constexpr auto BREAKFAST_PRICE = 6;
+constexpr auto TAXE = 1;
 
 
 
@@ -30,9 +30,9 @@ class Hotel
 
 	int day2, mon2, year2;           // check-out or daparture Date
 
-	int phoneNo;
+	std::string phoneNo;
 
-	int creditCardNo;
+	std::string creditCardNo;
 
 public:
 
@@ -58,7 +58,10 @@ public:
 
 	void add_guest_record();           // adding a new guest 
 
-	void modify_guest_record(std::string);        // editing a guest record
+	// editing a guest record
+
+	void modify_guest_record(std::string); 
+	void edit_roomNo(std::string);
 	void edit_guest_name(std::string);
 	void edit_date(std::string);
 	void edit_phone_n(std::string);
