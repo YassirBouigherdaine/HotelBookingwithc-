@@ -34,6 +34,8 @@ class Hotel
 
 	std::string creditCardNo;
 
+	std::string paid;
+
 public:
 
 	Hotel();
@@ -70,7 +72,6 @@ public:
 	void delete_record(std::string);              //deleting a guest record
 
 	void calculTheBill(std::string);             //calculate the bill of the guest 
-
 };
 
 

@@ -8,6 +8,8 @@ tm lt = {};
 
 char dt[26] = {};
 
+void bill_report();
+
 
 
 Hotel::Hotel()
@@ -27,6 +29,8 @@ Hotel::Hotel()
 	phoneNo = "Unkown";
 
 	creditCardNo = "Unkown";
+
+	paid = "NO";
 }
 
 bool checklogin(std::string userName, std::string passWord)
@@ -58,7 +62,7 @@ void Hotel::home_func()
 	do
 	{
 		system("cls");
-		std::cout << "\t\t***************************************************\n";
+		std::cout << "\n\t\t***************************************************\n";
 		std::cout << "\t\t***************************************************\n";
 		std::cout << "\t\t**                                               **\n";
 		std::cout << "\t\t*                      HOTELO                     *\n";
@@ -78,9 +82,9 @@ void Hotel::home_func()
 			system("cls");
 
 			user_name[0] = toupper(user_name[0]);
-			std::cout << "\n\n\t\t\t\t*                  *";
-			std::cout << "\n\t\t\t\t** Welcome, "<<user_name<<"  **";
-			std::cout << "\n\t\t\t\t*                  *";
+			std::cout << "\n\n\t\t\t\t*                    *";
+			std::cout << "\n\t\t\t\t**  Welcome, "<<user_name<<"  **";
+			std::cout << "\n\t\t\t\t*                    *";
 
 			std::cin.get();
 			access = true;
@@ -116,13 +120,15 @@ void Hotel::main_menu()
 		std::cout << "\t\t*                       HOME                     *\n";
 		std::cout << "\t\t**                                              **\n";
 		std::cout << "\t\t**************************************************\n";
+		std::cout << "\n\t\t* \t [1] Add new guest                       *\n";
+		std::cout << "\t\t* \t [2] Display booked rooms                *\n";
+		std::cout << "\t\t* \t [3] Display guest record                *\n";
+		std::cout << "\t\t* \t [4] Display departures list             *\n";
+		std::cout << "\t\t* \t [5] Display arrivals list               *\n";
+		std::cout << "\t\t* \t [6] Billing report                      *\n";
+		std::cout << "\t\t* \t [7] Exit                                *\n";
+		std::cout << "\n\t\t**************************************************\n";
 		std::cout << "\t\t**************************************************\n";
-		std::cout << "\n\n\t\t\t [1] Add new guest\n";
-		std::cout << "\t\t\t [2] Display booked rooms\n";
-		std::cout << "\t\t\t [3] Display guest record\n";
-		std::cout << "\t\t\t [4] Display departures list\n";
-		std::cout << "\t\t\t [5] Display arrivals list\n";
-		std::cout << "\t\t\t [6] Exit\n";
 
 		std::cout << "\n\t\t\t Your choice: ";
 		std::cin >> op;
@@ -144,9 +150,12 @@ void Hotel::main_menu()
 		case 5: display_arrivals_list();
 			break;
 
-		case 6: exit(1);
+		case 6: bill_report();
+			break;
 
-		default: std::cout << "\n\t\t\t Invalid choice !!\n";
+		case 7: exit(1);
+
+		default: std::cout << "\n\t\t\t Invalid choice\n";
 			std::cout << "\n\t\t\tPress [Enter] to try again\n";
 			std::cin.get();
 			break;
@@ -244,6 +253,7 @@ void Hotel::add_guest_record()
 	std::cout << "\n\t\t\t\t credit card no: ";
 	std::cin >> creditCardNo;
 
+	paid;
 	roomNo = 0;
 
 	writeToFile.write((char*)this, sizeof(Hotel));
@@ -289,7 +299,7 @@ void Hotel::display_reserved_rooms()
 				Name[0] = toupper(Name[0]);
 				std::cout << "\n Room number: " << roomNo << "\t\t" << "Room type: " << roomType << "\t\t" << "Name: " << Name << "\n" << " Arrangement_type:" << arrang_type << "\t\t"
 					"Check-in: " << day1 << "/" << mon1 << "/" << year1 << "\t\t" << "Check-out: " << day2 << "/" << mon2 << "/" << year2 << "\n" << " Phone no: " << phoneNo << "\t\t" <<
-					"Credit card no: " << creditCardNo << "\n";
+					"Credit card no: " << creditCardNo << "\tPayment: "<< paid <<"\n";
 				std::cout << "---------------------------------------------------------------------------------------";
 			}
 
@@ -337,7 +347,7 @@ void Hotel::display_departures_list()
 				Name[0] = toupper(Name[0]);
 				std::cout << "\n Room number: " << roomNo << "\t\t" << "Room type: " << roomType << "\t\t" << "Name: " << Name << "\n" << " Arrangement_type:" << arrang_type << "\t\t"
 					"Check-in: " << day1 << "/" << mon1 << "/" << year1 << "\t\t" << "Check-out: " << day2 << "/" << mon2 << "/" << year2 << "\n" << " Phone no: " << phoneNo << "\t\t" <<
-					"Credit card no: " << creditCardNo << "\n";
+					"Credit card no: " << creditCardNo << "\tPayment: " << paid << "\n";
 				std::cout << "---------------------------------------------------------------------------------------";
 			}
 
@@ -385,7 +395,7 @@ void Hotel::display_arrivals_list()
 				Name[0] = toupper(Name[0]);
 				std::cout << "\n Room type: " << roomType << "\t\t" << "Name: " << Name << "\n" << " Arrangement_type:" << arrang_type << "\t\t"
 					"Check-in: " << day1 << "/" << mon1 << "/" << year1 << "\t\t" << "Check-out: " << day2 << "/" << mon2 << "/" << year2 << "\n" << " Phone no: " << phoneNo << "\t\t" <<
-					"Credit card no: " << creditCardNo << "\n";
+					"Credit card no: " << creditCardNo << "\tPayment: " << paid << "\n";
 				std::cout << "---------------------------------------------------------------------------------------";
 			}
 
@@ -396,6 +406,40 @@ void Hotel::display_arrivals_list()
 	readFromFile.close();
 	std::cout << "\n\n\t\t\t Press [ENTER] to continue";
 	std::cin.get();
+}
+
+
+void bill_report()
+{
+	std::ifstream fin("bills.txt", std::ios::in | std::ios::binary);
+	if (fin.is_open())
+	{
+		system("cls");
+		int d, m, y, h, min, room_n;
+		std::string room_t, name, payMode;
+		// Fout << day2 << "\t" << mon2 << year2 << h << m << roomNo << roomType << Name << pay_mode 
+		std::cout << "\n----------------------------------BILLING REPORT--------------------------------------------\n";
+		std::cout << "-------------------------------------------------------------------------------------------\n";
+		std::cout << "\tDATE \t\tTIME \t ROOM NO \tROOM TYPE \t NAME \t PAYMENT MODE \n";
+		std::cout << "-------------------------------------------------------------------------------------------\n";
+
+		fin >> d >> m >> y >> h >> min >> room_n >> room_t >> name >> payMode;
+
+		while (!fin.eof())
+		{
+			std::cout << "\t" << d << "-" << m << "-" << y << "\t" << h << ":" << min << "\t  " << room_n << "  \t     " << room_t <<"   \t  "<< name <<"\t  "<< payMode << std::endl;
+			std::cout << "-------------------------------------------------------------------------------------------\n";
+			fin >> d >> m >> y >> h >> min >> room_n >> room_t >> name >> payMode;
+		}
+	}
+	else
+	{
+		system("cls");
+		std::cout << "\n\t\tError occurred in opening the file\n";
+	}
+
+	_getch();
+	fin.close();
 }
 
 
@@ -435,10 +479,8 @@ void Hotel::display_guest_record()
 	
 		if (is_exist(tmpName))
 		{
-			while (!readFromFile.eof())
+			while (readFromFile.read((char*)this, sizeof(Hotel)))
 			{
-				readFromFile.read((char*)this, sizeof(Hotel));
-
 				if (Name == tmpName)
 				{
 					system("cls");
@@ -461,6 +503,8 @@ void Hotel::display_guest_record()
 					std::cout << "\n\t-----------------------------------------------------------------------------";
 					std::cout << "\n\t\t\t\t Credit card no: " << creditCardNo;
 					std::cout << "\n\t-----------------------------------------------------------------------------";
+					std::cout << "\n\t\t\t\t Payment: " << paid;
+					std::cout << "\n\t-----------------------------------------------------------------------------";
 					readFromFile.close();
 
 					//editing the record
@@ -469,7 +513,7 @@ void Hotel::display_guest_record()
 					int option;
 					std::cout << "\n\t\t\t Your choice: ";
 					std::cin >> option;
-					
+
 					switch (option)
 					{
 					case 1: add_to_presents(tmpName);
@@ -491,6 +535,7 @@ void Hotel::display_guest_record()
 					}
 				}
 			}
+			
 		}
 		else
 		{
@@ -820,9 +865,9 @@ void Hotel::delete_record(std::string tmpName)
 void Hotel::calculTheBill(std::string tmpName)
 {
 	system("cls");
-	std::ifstream readFromFile("guestRecord.txt", std::ios::in | std::ios::binary);
+	std::fstream file("guestRecord.txt", std::ios::out | std::ios::in | std::ios::binary);
 
-	while (readFromFile.read((char*)this, sizeof(Hotel)))
+	while (file.read((char*)this, sizeof(Hotel)))
 	{
 		if (Name == tmpName)
 		{
@@ -928,9 +973,61 @@ void Hotel::calculTheBill(std::string tmpName)
 			std::cout << "                                            TVA:10%             " << total * 0.1 << "\n\n";
 			std::cout << "                                            NET:                " << total + (total * 0.1) << "  \n\n";
 
+			// payment
+
+			char ch;
+			std::string pay_mode = "";
+
+			std::cout << "\n\n\t\t [P] Payment \t\t [E] Exit\n";
+			std::cout << "\n\t\t >choice: ";
+			std::cin >> ch;
+
+			if (ch == 'p' || ch == 'P')
+			{
+				ctime_s(dt, 26, &now);
+				localtime_s(&lt, &now);
+				asctime_s(dt, 26, &lt);
+
+				int h = lt.tm_hour;
+				int m = lt.tm_min;
+
+				int p;
+
+				do
+				{
+					system("cls");
+					std::cout << "\n\n\t\t Payment mode:    [1] Cash \t [2] Credit card \t [3] Check";
+					std::cout << "\n\n\t\t\t >choice :";
+					std::cin >> p;
+
+					switch (p)
+					{
+					case 1: pay_mode = "Cash";
+						break;
+					case 2: pay_mode = "C.C";
+						break;
+					case 3: pay_mode = "Check";
+						break;
+					default:std::cout << "\n\t\t\t Invalid choice\n";
+						std::cin.get();
+						break;
+					}
+
+				} while (p < 1 && p > 3);
+
+				std::ofstream Fout("bills.txt", std::ios::app | std::ios::binary);
+				Fout << day2 << "\t" << mon2 << "\t" << year2 << "\t" << h << "\t" << m << "\t" << roomNo << "\t" << roomType << "\t" << Name << "\t" << pay_mode << std::endl;
+				Fout.close();
+
+				paid = pay_mode;
+
+				unsigned __int64 pos = file.tellg();
+				file.seekp(pos - sizeof(Hotel), std::ios::beg);
+				file.write((char*)this, sizeof(Hotel));
+				break;
+			}
 		}
 	}
 
-	readFromFile.close();
-	_getch();
+	file.close();
 }
