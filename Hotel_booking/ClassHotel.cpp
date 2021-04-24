@@ -173,15 +173,26 @@ int Hotel::check_room_status(int new_room_no)
 	std::ifstream readFromFile("guestRecord.txt", std::ios::in | std::ios::binary);
 	int room_status = 0;
 
+	ctime_s(dt, 26, &now);
+	localtime_s(&lt, &now);
+	asctime_s(dt, 26, &lt);
+
+	int d = lt.tm_mday;
+	int m = lt.tm_mon + 1;
+	int y = 1900 + lt.tm_year;
+
 	while (!readFromFile.eof())
 	{
 		readFromFile.read((char*)this, sizeof(Hotel));
 
 		if (new_room_no == roomNo)
 		{
-			//room is reserved
-			room_status = 1;
-			break;
+			if (day2 > d && mon2 == m && year2 == y || mon2 > m || year2 > y)
+			{
+				//room is reserved
+				room_status = 1;
+				break;
+			}
 		}
 	}
 
@@ -222,10 +233,47 @@ void Hotel::add_guest_record()
 
 	Name = tmpName;
 
-	std::cout << "\n\t\t\t\t Room type: ";
-	std::cin >> roomType;
-	std::cout << "\n\t\t\t\t Arrangement type (BB/BO): ";        // bad&breakfast or bad only
-	std::cin >> arrang_type;
+	int ch;
+	std::cout << "\n\n\t\t\t\t Room type:    [1] Single     [2] Double     [3] Triple";
+	std::cout << "\n\n\t\t\t\t >choice :";
+	std::cin >> ch;
+	switch (ch)
+	{
+	case 1: roomType = "single";
+		break;
+		
+	case 2: roomType = "double";
+		break;
+		
+	case 3: roomType = "triple";
+		break;
+		
+	default: system("cls");
+		std::cout << "\n\t\t\t Invalid input\n";
+		_getch();
+		return;
+	}
+
+	int op;
+	std::cout << "\n\n\t\t\t\t Arrangement type:    [1] Bad&breakfast    [2] Bad only";
+	std::cout << "\n\n\t\t\t\t >choice :";
+	std::cin >> op;
+	if (op == 1)
+	{
+		arrang_type = "B.B";
+	}
+	else if (op == 2)
+	{
+		arrang_type = "B.O";
+	}
+	else
+	{
+		system("cls");
+		std::cout << "\n\t\t\t Invalid input\n";
+		_getch();
+		return;
+	}
+
 	std::cout << "\n\t\t\t\t check-in: ";
 	std::cin >> day1 >> mon1 >> year1;
 
@@ -253,7 +301,7 @@ void Hotel::add_guest_record()
 	std::cout << "\n\t\t\t\t credit card no: ";
 	std::cin >> creditCardNo;
 
-	paid;
+	paid = "NO";
 	roomNo = 0;
 
 	writeToFile.write((char*)this, sizeof(Hotel));
@@ -322,9 +370,7 @@ void Hotel::display_departures_list()
 	readFromFile.read((char*)this, sizeof(Hotel));
 
 	ctime_s(dt, 26, &now);
-
 	localtime_s(&lt, &now);
-
 	asctime_s(dt, 26, &lt);
 
 	int d = lt.tm_mday;
@@ -427,7 +473,7 @@ void bill_report()
 
 		while (!fin.eof())
 		{
-			std::cout << "\t" << d << "-" << m << "-" << y << "\t" << h << ":" << min << "\t  " << room_n << "  \t     " << room_t <<"   \t  "<< name <<"\t  "<< payMode << std::endl;
+			std::cout << "\t" << d << "-" << m << "-" << y << "\t" << h << ":" << min << "\t  " << room_n << "\t        " << room_t <<"   \t  "<< name <<"\t  "<< payMode << std::endl;
 			std::cout << "-------------------------------------------------------------------------------------------\n";
 			fin >> d >> m >> y >> h >> min >> room_n >> room_t >> name >> payMode;
 		}
@@ -438,14 +484,21 @@ void bill_report()
 		std::cout << "\n\t\tError occurred in opening the file\n";
 	}
 
-	_getch();
 	fin.close();
+	_getch();
 }
 
 
 int Hotel::is_exist(std::string tmpName)
 {
 	int exist = 0;
+	ctime_s(dt, 26, &now);
+	localtime_s(&lt, &now);
+	asctime_s(dt, 26, &lt);
+
+	int d = lt.tm_mday;
+	int m = lt.tm_mon + 1;
+	int y = 1900 + lt.tm_year;
 
 	std::ifstream readFromFile("guestRecord.txt", std::ios::in | std::ios::binary);
 
@@ -455,8 +508,11 @@ int Hotel::is_exist(std::string tmpName)
 
 		if (tmpName == Name)
 		{
-			exist = 1;
-			break;
+			if (day2 > d && mon2 == m && year2 == y || mon2 > m || year2 > y)
+			{
+				exist = 1;
+				break;
+			}
 		}
 	}
 
@@ -988,8 +1044,11 @@ void Hotel::calculTheBill(std::string tmpName)
 				localtime_s(&lt, &now);
 				asctime_s(dt, 26, &lt);
 
+				int d = lt.tm_mday;
+				int m = lt.tm_mon + 1;
+				int y = 1900 + lt.tm_year;
 				int h = lt.tm_hour;
-				int m = lt.tm_min;
+				int min = lt.tm_min;
 
 				int p;
 
@@ -1016,7 +1075,7 @@ void Hotel::calculTheBill(std::string tmpName)
 				} while (p < 1 && p > 3);
 
 				std::ofstream Fout("bills.txt", std::ios::app | std::ios::binary);
-				Fout << day2 << "\t" << mon2 << "\t" << year2 << "\t" << h << "\t" << m << "\t" << roomNo << "\t" << roomType << "\t" << Name << "\t" << pay_mode << std::endl;
+				Fout << d << "\t" << m << "\t" << y << "\t" << h << "\t" << min << "\t" << roomNo << "\t" << roomType << "\t" << Name << "\t" << pay_mode << std::endl;
 				Fout.close();
 
 				paid = pay_mode;
